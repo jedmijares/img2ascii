@@ -3,7 +3,7 @@ EXEC = test
 
 #build executable program
 $(EXEC): $(OBJECTS)
-	g++ $^ -o $@ 
+	g++ $^ -o $@ `Magick++-config --cppflags --cxxflags --ldflags --libs`
 
 #build objective files from source files
 %.o: source/%.cpp # $(HEADERS)

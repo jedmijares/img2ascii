@@ -10,7 +10,10 @@ int main(int argc, char** argv)
         return -1;
     }
 
-    std::string inputFile = argv[1];
+    std::string filename = argv[1];
+    Magick::Image inputImg(filename);
+
+    std::cout << filename << " is an " << inputImg.columns() << " by " << inputImg.rows() << " image.\n";
 
     return 0;
 }
