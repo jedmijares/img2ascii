@@ -1,5 +1,5 @@
 OBJECTS = main.o
-EXEC = test
+EXEC = img2ascii
 
 #build executable program
 $(EXEC): $(OBJECTS)
@@ -11,6 +11,6 @@ $(EXEC): $(OBJECTS)
 
 #clean up the mess
 clean:
-	rm -i `find ./ -type f -executable`
-	rm -i *.o
+	rm `find ./ -type f -executable`
+	rm *.o
 
