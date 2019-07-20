@@ -13,6 +13,7 @@ int main(int argc, char** argv)
     }
 
     bool invertFlag = false;
+    int pixelCount = 3;
     int argvIndex = 1;
     while ((argvIndex < argc - 1) && (*argv[argvIndex] == '-'))
     {
@@ -22,7 +23,13 @@ int main(int argc, char** argv)
             invertFlag = true;
             argvIndex++;
         }
-        
+        else if (argument.compare("-p") == 0)
+        {
+            argvIndex++;
+            std::string countString(argv[argvIndex]);
+            pixelCount = std::stoi(countString);
+            argvIndex++;
+        }
     }
 
     try
@@ -39,7 +46,7 @@ int main(int argc, char** argv)
                 float pixelBrightness = 0.2126*(inputImg.pixelColor(x,y)).quantumRed() + 0.7152*(inputImg.pixelColor(x,y)).quantumGreen() + 0.0722*(inputImg.pixelColor(x,y)).quantumBlue();
                 const char* asciiChart = " `^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"; // ASCII from dimmest to brightest
                 int charIndex = (pixelBrightness)/QuantumRange * sizeof(asciiChart); // map brightness value to a printable character in array
-                for(int i = 0; i < 2; i++) // print each character multiple times to account for difference in length to width
+                for(int i = 0; i < pixelCount; i++) // print each character multiple times to account for difference in height to width of characters
                 {
                     if(!invertFlag) std::cout << asciiChart[charIndex];
                     else std::cout << asciiChart[sizeof(asciiChart) - charIndex];
