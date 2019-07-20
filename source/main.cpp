@@ -4,12 +4,20 @@
 #include <Magick++.h>
 #include <iostream>
 
+void usage()
+{
+    std::cout << "Usage:   ./img2ascii [options] filename\n"
+    << "Options: -i (invert image)\n"
+    << "         -p pixelCount (number of times to print each pixels character)\n"
+    << "         -s scaleFactor (integer to divide image dimensions by if image is too large)\n";
+    exit(1);
+}
+
 int main(int argc, char** argv)
 {
     if(argc < 2)
     {
-        std::cout << "Need input file. \n";
-        return -1;
+        usage();
     }
 
     // values set by command line options
@@ -39,8 +47,7 @@ int main(int argc, char** argv)
         }
         else
         {
-            std::cout << "Error in command line arguments. Exiting program.\n";
-            exit(1);
+            usage();
         }
         argvIndex++;
     }
