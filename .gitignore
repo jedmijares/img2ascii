@@ -28,3 +28,6 @@
 *.app
 
 .vscode
+img2ascii
+
+images/
